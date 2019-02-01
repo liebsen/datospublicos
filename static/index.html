@@ -13,21 +13,15 @@
         margin: 0;
         padding: 0;
     }      
-    #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-    }
     .legend {
         background-color: #fff;
         border-radius: 3px;
-        bottom: 30px;
         box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-        font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+        font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         padding: 10px;
         position: absolute;
-        right: 10px;
+        top: 10px;
+        left: 10px;
         z-index: 1;
     }
     .legend h4 {
@@ -40,16 +34,19 @@
         margin-right: 5px;
         width: 10px;
     }  
+    .box {
+        padding: 1rem;
+    }
   </style>
 </head>
 
 <body>
-    <div>
+    <div class="legend">
         <h4>Datasets Minei</h4>
-        <a href="pozos.html">Pozos</a> 
-        <a href="pozosoperadoras.html">Pozos Operadoras</a> 
-        <a href="yacimientos.html">Yacimientos</a> 
-        <a href="http://datos.minem.gob.ar">Fuente</a> 
+        <a href="pozos.html">Pozos</a><br> 
+        <a href="pozosoperadoras.html">Pozos Operadoras</a> <br> 
+        <a href="yacimientos.html">Yacimientos</a> <br> 
+        <a href="http://datos.minem.gob.ar">Fuente</a> <br> 
         <a href="https://github.com/martinfrith/datosminei">Github</a>
     </div>
 </body>
