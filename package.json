@@ -1,0 +1,27 @@
+{
+  "name": "yacimientospozosargentina",
+  "version": "0.0.1",
+  "description": "Tendido eléctrico Chubut",
+  "type": "project",
+  "keywords": [
+    "transport",
+    "energy"
+  ],
+  "homepage": "https://yacimientospozosargentina.glitch.me",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Martin Frith",
+      "email": "overlemonsoft@gmail.com",
+      "homepage": "https://overlemon.glitch.me",
+      "role": "Developer"
+    }
+  ],
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
