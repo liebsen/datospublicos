@@ -1,13 +1,13 @@
 {
-  "name": "yacimientospozosargentina",
+  "name": "datospublicos",
   "version": "0.0.1",
-  "description": "Tendido eléctrico Chubut",
+  "description": "Datos públicos del Ministerio de Energía",
   "type": "project",
   "keywords": [
-    "transport",
+    "data visualization",
     "energy"
   ],
-  "homepage": "https://yacimientospozosargentina.glitch.me",
+  "homepage": "https://datospublicos.glitch.me",
   "license": "MIT",
   "authors": [
     {
