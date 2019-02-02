@@ -55,7 +55,7 @@
   <div id="map"></div>
   <script>
   //default token
-  mapboxgl.accessToken = 'pk.eyJ1IjoibW9sbHltZXJwIiwiYSI6ImNpazdqbGtiZTAxbGNocm0ybXJ3MnNzOHAifQ.5_kJrEENbBWtqTZEv7g1-w';
+  mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJ5ZFd0U19vIn0.Z7WBxuf0QKPrdzv2o6Mx6A';
 
   const url = 'pozos.geojson';
   const map = new mapboxgl.Map({
@@ -68,9 +68,9 @@
     map.on('load', function() {
         // Add a new source from our GeoJSON data and set the
         // 'cluster' option to true. GL-JS will add the point_count property to your source data.
-        map.addSource("earthquakes", {
+        map.addSource("pozos", {
             type: "geojson",
-            // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
+            // Point to GeoJSON data. This example visualizes all M1.0+ pozos
             // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
             data: url,
             cluster: true,
@@ -81,7 +81,7 @@
         map.addLayer({
             id: "clusters",
             type: "circle",
-            source: "earthquakes",
+            source: "pozos",
             filter: ["has", "point_count"],
             paint: {
                 // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -113,7 +113,7 @@
         map.addLayer({
             id: "cluster-count",
             type: "symbol",
-            source: "earthquakes",
+            source: "pozos",
             filter: ["has", "point_count"],
             layout: {
                 "text-field": "{point_count_abbreviated}",
@@ -125,7 +125,7 @@
         map.addLayer({
             id: "unclustered-point",
             type: "circle",
-            source: "earthquakes",
+            source: "pozos",
             filter: ["!", ["has", "point_count"]],
             paint: {
                 "circle-color": "#11b4da",
@@ -139,13 +139,13 @@
         map.on('click', 'clusters', function (e) {
             var features = map.queryRenderedFeatures(e.point, { layers: ['clusters'] });
             var clusterId = features[0].properties.cluster_id;
-            map.getSource('earthquakes').getClusterExpansionZoom(clusterId, function (err, zoom) {
-            if (err)
-            return;
-             
-            map.easeTo({
-                center: features[0].geometry.coordinates,
-                zoom: zoom
+            map.getSource('pozos').getClusterExpansionZoom(clusterId, function (err, zoom) {
+                if (err)
+                return;
+                 
+                map.easeTo({
+                    center: features[0].geometry.coordinates,
+                    zoom: zoom
                 });
             });
         });
@@ -153,6 +153,7 @@
         map.on('mouseenter', 'clusters', function () {
             map.getCanvas().style.cursor = 'pointer';
         });
+
         map.on('mouseleave', 'clusters', function () {
             map.getCanvas().style.cursor = '';
         });
