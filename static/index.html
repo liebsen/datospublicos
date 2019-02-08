@@ -12,12 +12,16 @@
     body {
         margin: 0;
         padding: 0;
-    }      
+        font-family:'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+    .content {
+        padding: 1rem;
+        padding-top: 5rem;
+    }  
     .legend {
         background-color: #fff;
         border-radius: 3px;
         box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-        font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         padding: 10px;
         position: absolute;
         top: 10px;
@@ -35,20 +39,44 @@
         margin-right: 5px;
         width: 10px;
     }  
-    .box {
+    .fast-access {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
         padding: 1rem;
+        padding-bottom: 0;
     }
   </style>
+    
 </head>
 
 <body>
+    <div class="fast-access">
+        <a href="http://datos.minem.gob.ar" target="_blank">Fuente</a>
+        <a href="https://github.com/martinfrith/datospublicos" title="Github" target="_blank"><img src="img/github-logo.svg" height="30"></a>
+    </div>
+
     <div class="legend">
         <h4>Datos públicos MINEM</h4>
-        <a href="index.html">Home</a> <br>        
-        <a href="pozos.html">Pozos</a><br> 
-        <a href="pozosoperadoras.html">Pozos Operadoras</a> <br> 
-        <a href="yacimientos.html">Yacimientos</a> <br> 
-        <a href="http://datos.minem.gob.ar">Fuente</a> <br> 
-        <a href="https://github.com/martinfrith/datospublicos">Github</a>
+        <select id="dset">
+            <option value="index.html" selected>Inicio</option>
+            <option value="pozos.html">Pozos</option>
+            <!--option value="pozosoperadoras.html">Pozos Operadoras</option>
+            <option value="yacimientos.html">Yacimientos</option-->
+        </select>
     </div>
+
+    <div class="content">
+        <h1>Visualización y geolocalización de datos públicos del Ministerio de Energía.</h1>
+        <p>Este proyecto es un intento de contribuir con la visualización de algunos datos que últimamente el Ministerio de Energía de nuestro país ha empezado a publicar. Celebramos esta iniciativa y nos ponemos a colaborar en este caso con unas humildes visualizaciones, y con la grandiosa ayuda de Mapbox con su potente librería GL.</p>
+    </div>
+
+    <script>
+        var dset_options = document.getElementById('dset');
+        dset_options.onchange = function() {
+            var elem = (typeof this.selectedIndex === "undefined" ? window.event.srcElement : this);
+            var value = elem.value || elem.options[elem.selectedIndex].value;
+            location.href = value;
+        }
+    </script>
 </body>
