@@ -177,9 +177,12 @@
             map.getCanvas().style.cursor = '';
         });
 
-        map.on('idle',function(){
-           document.querySelector('.loading').style.display = 'none'     
-        })        
+        var clock = setInterval(() => {
+            if(map.loaded()){
+                document.querySelector('.loading').style.display = 'none'     
+                clearInteval(clock)     
+            }
+        },500)
     });
   </script>
 
