@@ -12,6 +12,8 @@
     body {
         margin: 0;
         padding: 0;
+        font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+
     }      
     #map {
         position: absolute;
@@ -24,7 +26,6 @@
         border-radius: 3px;
         top: 10px;
         box-shadow: 0 1px 2px rgba(0,0,0,0.10);
-        font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
         padding: 10px;
         position: absolute;
         left: 10px;
@@ -41,6 +42,20 @@
         margin-right: 5px;
         width: 10px;
     }  
+    .loading {
+       position: absolute;
+       z-index: 9999;
+       top: 50%;
+       left: 50%;
+       width: 200px;
+       height: 50px;
+       margin-top: -25px; /* Half the height */
+       margin-left: -100px; /* Half the width */
+       border: 2px solid white;
+       border-radius: 10px;
+       text-align: center;
+        background-color: rgba(255,255,255,0.5);
+    }
   </style>
 </head>
 
@@ -55,20 +70,20 @@
         <option value="yacimientos.html">Yacimientos</option-->
     </select>
   </div>
-
+    <div class="loading"><p>Cargando datos...</p></div>
   <div id="map"></div>
   <script>
-  //default token
-  mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJ5ZFd0U19vIn0.Z7WBxuf0QKPrdzv2o6Mx6A';
+    //default token
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWFydGluZnJlZSIsImEiOiJ5ZFd0U19vIn0.Z7WBxuf0QKPrdzv2o6Mx6A';
 
-  const url = 'pozos.geojson';
-  const map = new mapboxgl.Map({
-    container: 'map',
-    zoom: 1,
-    center: [0, 0],
-    style: 'mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41',
-    hash: true
-  });
+    const url = 'pozos.geojson';
+    const map = new mapboxgl.Map({
+        container: 'map',
+        zoom: 1,
+        center: [0, 0],
+        style: 'mapbox://styles/mapbox/cjf4m44iw0uza2spb3q0a7s41',
+        hash: true
+    });
     map.on('load', function() {
         // Add a new source from our GeoJSON data and set the
         // 'cluster' option to true. GL-JS will add the point_count property to your source data.
@@ -161,6 +176,10 @@
         map.on('mouseleave', 'clusters', function () {
             map.getCanvas().style.cursor = '';
         });
+
+        map.on('idle',function(){
+           document.querySelector('.loading').style.display = 'none'     
+        })        
     });
   </script>
 
